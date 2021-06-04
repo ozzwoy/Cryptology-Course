@@ -44,13 +44,11 @@ public abstract class LOKI97 {
 
     /* S1(A) does cubing A by modulo S1_GEN, S1_GEN is irreducible polynomial in GF(2^13), output is 8-bit word */
     private static long s1(int a) {
-        // a = ~a;
         return Utils.pow3InField(a ^ S1_MASK, S1_GEN, S1_SIZE) & 0xFFL;
     }
 
     /* S2(A) does cubing A by modulo S2_GEN, S2_GEN is irreducible polynomial in GF(2^11), output is 8-bit word */
     private static long s2(int a) {
-        // a = ~a;
         return Utils.pow3InField(a ^ S2_MASK, S2_GEN, S2_SIZE) & 0xFFL;
     }
 
@@ -106,15 +104,6 @@ public abstract class LOKI97 {
     B is 32-bit word, output is 64-bit word */
     private static long sb(long a, long b) {
         long result = 0;
-
-//        result |= s2((int) (a >>> 21)) << 56;
-//        result |= s2((int) (a >>> 10 & S2_MASK)) << 48;
-//        result |= s1((int) ((a & 0x3FF) << 3 | b >>> 61)) << 40;
-//        result |= s1((int) (b >>> 48 & S1_MASK)) << 32;
-//        result |= s2((int) (b >>> 37 & S2_MASK)) << 24;
-//        result |= s2((int) (b >>> 26 & S2_MASK)) << 16;
-//        result |= s1((int) (b >>> 13 & S1_MASK)) << 8;
-//        result |= s1((int) (b & S1_MASK));
 
         result |= s2((int) ((b >>> 21 &  0x700) | (a >>> 56 & 0xFF))) << 56;
         result |= s2((int) ((b >>> 18 &  0x700) | (a >>> 48 & 0xFF))) << 48;

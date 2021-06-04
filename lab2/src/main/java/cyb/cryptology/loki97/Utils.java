@@ -1,7 +1,5 @@
 package cyb.cryptology.loki97;
 
-import java.math.BigInteger;
-
 public abstract class Utils {
 
     public static long bytesToUnsignedLong(byte[] bytes, int startIndex) {
@@ -108,50 +106,5 @@ public abstract class Utils {
         result = multiplyInField(result, b, g, n);
 
         return result;
-    }
-
-    public static long add64(long left, long right) {
-        BigInteger bigLeft = BigInteger.valueOf(left);
-        BigInteger bigRight = BigInteger.valueOf(right);
-        BigInteger modulo = BigInteger.TWO.pow(64);
-
-        if (left < 0) {
-            bigLeft = bigLeft.negate().setBit(bigLeft.bitLength());
-        }
-        if (right < 0) {
-            bigRight = bigRight.negate().setBit(bigRight.bitLength());
-        }
-
-        return bigLeft.add(bigRight).mod(modulo).longValue();
-    }
-
-    public static long subtract64(long left, long right) {
-        BigInteger bigLeft = BigInteger.valueOf(left);
-        BigInteger bigRight = BigInteger.valueOf(right);
-        BigInteger modulo = BigInteger.TWO.pow(64);
-
-        if (left < 0) {
-            bigLeft = bigLeft.negate().setBit(bigLeft.bitLength());
-        }
-        if (right < 0) {
-            bigRight = bigRight.negate().setBit(bigRight.bitLength());
-        }
-
-        return bigLeft.subtract(bigRight).mod(modulo).longValue();
-    }
-
-    public static long multiply64(long left, long right) {
-        BigInteger bigLeft = BigInteger.valueOf(left);
-        BigInteger bigRight = BigInteger.valueOf(right);
-        BigInteger modulo = BigInteger.TWO.pow(64);
-
-        if (left < 0) {
-            bigLeft = bigLeft.negate().setBit(bigLeft.bitLength());
-        }
-        if (right < 0) {
-            bigRight = bigRight.negate().setBit(bigRight.bitLength());
-        }
-
-        return bigLeft.multiply(bigRight).mod(modulo).longValue();
     }
 }
